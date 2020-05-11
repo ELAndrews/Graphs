@@ -10,36 +10,52 @@ class Graph:
         self.vertices = {}
 
     def add_vertex(self, vertex_id):
-        """
-        Add a vertex to the graph.
-        """
-        pass  # TODO
+        self.vertices[vertex_id] = set()
 
     def add_edge(self, v1, v2):
-        """
-        Add a directed edge to the graph.
-        """
-        pass  # TODO
+        if v1 in self.vertices and v2 in self.vertices:
+            self.vertices[v1].add(v2)
+        else:
+            raise IndexError("Vertex doesn't exist")
 
     def get_neighbors(self, vertex_id):
-        """
-        Get all neighbors (edges) of a vertex.
-        """
-        pass  # TODO
+        return self.vertices[vertex_id]
 
     def bft(self, starting_vertex):
         """
         Print each vertex in breadth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        q = Queue()
+        q.enqueue(starting_vertex)
+
+        visitedNodes = set()
+
+        while q.size() > 0:
+            node = q.dequeue()
+            if node not in visitedNodes:
+                print(node)
+                visitedNodes.add(node)
+                for next_vertex in self.get_neighbors(node):
+                    q.enqueue(next_vertex)
 
     def dft(self, starting_vertex):
         """
         Print each vertex in depth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        s = Stack()
+        s.push(starting_vertex)
+        visitedNodes = set()
+
+        while s.size() > 0:
+            node = s.pop()
+            if node not in visitedNodes:
+                print(node)
+                visitedNodes.add(node)
+                for next_vertex in self.get_neighbors(node):
+                    s.push(next_vertex)
+
 
     def dft_recursive(self, starting_vertex):
         """
@@ -48,7 +64,19 @@ class Graph:
 
         This should be done using recursion.
         """
-        pass  # TODO
+        s = Stack()
+        visitedNodes = set()
+
+        def recursion(self, node):
+            if node not in visitedNodes:
+                print(node)
+                visitedNodes.add(node)
+                for next_vertex in self.get_neighbors(node):
+                    next_vertex.recursion(next_vertex)
+            else:
+                return
+        
+        starting_vertex.recursion(starting_vertex)
 
     def bfs(self, starting_vertex, destination_vertex):
         """
