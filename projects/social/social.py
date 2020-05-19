@@ -42,11 +42,6 @@ class SocialGraph:
         self.lastID = 0
         self.users = {}
         self.friendships = {}
-        
-        # # The number of users must be greater than the average number of friendships.
-        # if numUsers <= avgFriendships:
-        #     print("Number of users must be greater than the average number of friendships")
-        #     return 
 
         for user in range(numUsers):
             self.addUser(user)
